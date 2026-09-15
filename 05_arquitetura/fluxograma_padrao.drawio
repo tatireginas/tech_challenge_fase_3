@@ -1,0 +1,157 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Fluxograma Padrao - Pipeline State of Data" id="flowstd1">
+    <mxGraphModel dx="1438" dy="821" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=17;fontStyle=1;align=left;" value="Arquitetura AWS — Pipeline State of Data Brasil (fluxograma padrão)" vertex="1">
+          <mxGeometry height="30" width="900" x="80" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;fontSize=11;align=left;fontColor=#4A5568;" value="2023 + 2024 + 2025/2026 | Sem Crawlers — cada camada se auto-cataloga na escrita | Gold materializada via Athena (CTAS)" vertex="1">
+          <mxGeometry height="20" width="900" x="80" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="inicio" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#5C6B7A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=14;fontStyle=1;" value="Início" vertex="1">
+          <mxGeometry height="70" width="100" x="115" y="105" as="geometry" />
+        </mxCell>
+        <mxCell id="csv" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#5C6B7A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="CSVs Kaggle&#xa;State of Data BR&#xa;2023+2024+2025/26" vertex="1">
+          <mxGeometry height="70" width="150" x="90" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="vscode" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5C6B7A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="VS Code / Jupyter&#xa;Python + boto3&#xa;(upload dos CSVs)" vertex="1">
+          <mxGeometry height="70" width="150" x="90" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="s3in" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#2F9E44;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="S3&#xa;data-input/bronze/&#xa;state-of-data/{ano}/" vertex="1">
+          <mxGeometry height="85" width="140" x="95" y="495" as="geometry" />
+        </mxCell>
+        <mxCell id="jobbronze" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#E67E22;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="AWS Glue Job (PySpark)&#xa;glue-state-of-data-bronze.py&#xa;CSV → Parquet + Snappy" vertex="1">
+          <mxGeometry height="70" width="170" x="80" y="637.5" as="geometry" />
+        </mxCell>
+        <mxCell id="s3bronze" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#B3402A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="S3 — Camada Bronze&#xa;data-output/bronze/&#xa;state-of-data/{ano}/" vertex="1">
+          <mxGeometry height="85" width="160" x="315" y="212.5" as="geometry" />
+        </mxCell>
+        <mxCell id="catalog" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=10;fontStyle=1;" value="Glue Data Catalog&#xa;3 tabelas Bronze&#xa;(auto-registradas)" vertex="1">
+          <mxGeometry height="85" width="170" x="310" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="notebsilver" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#E67E22;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="AWS Glue Notebook (PySpark)&#xa;camada-silver-final-ver.ipynb&#xa;Auditoria + Harmonização" vertex="1">
+          <mxGeometry height="80" width="170" x="310" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="silver" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#B3402A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Camada Silver&#xa;tb_state_data_silver_v2&#xa;Parquet+Snappy, part. ano" vertex="1">
+          <mxGeometry height="85" width="160" x="315" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="athena" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#0F7C82;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Amazon Athena&#xa;consulta direta sobre a Silver&#xa;(sem depender do saveAsTable)" vertex="1">
+          <mxGeometry height="70" width="170" x="550" y="212.5" as="geometry" />
+        </mxCell>
+        <mxCell id="export" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E67E22;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Exportação CSV&#xa;(Athena UNLOAD /&#xa;CREATE TABLE AS)" vertex="1">
+          <mxGeometry height="70" width="150" x="560" y="358" as="geometry" />
+        </mxCell>
+        <mxCell id="s3export" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#2F9E44;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="S3&#xa;data-output/&#xa;export-csv/" vertex="1">
+          <mxGeometry height="85" width="140" x="565" y="502.5" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-10" edge="1" parent="1" source="download" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;" target="DpS-EUZ55fWoTBLlmjlq-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="download" parent="1" style="shape=document;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Download dos&#xa;7 CSVs" vertex="1">
+          <mxGeometry height="80" width="160" x="555" y="632.5" as="geometry" />
+        </mxCell>
+        <mxCell id="graficos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2F9E44;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Gráficos / Análises&#xa;Python (Pandas/&#xa;Matplotlib) ou BI" vertex="1">
+          <mxGeometry height="70" width="160" x="790" y="212.5" as="geometry" />
+        </mxCell>
+        <mxCell id="material" parent="1" style="shape=document;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" value="Material Executivo (PDF)&lt;br&gt;&quot;Perfil de Mercado de&lt;br&gt;Profissionais de Dados&quot;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="785" y="352.5" as="geometry" />
+        </mxCell>
+        <mxCell id="fim" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#5C6B7A;strokeColor=#1F2937;fontColor=#ffffff;fontSize=14;fontStyle=1;" value="Fim" vertex="1">
+          <mxGeometry height="70" width="100" x="820" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="inicio" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="csv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="csv" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="vscode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="vscode" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="s3in">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="s3in" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="jobbronze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="s3bronze" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="catalog" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="catalog" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="notebsilver" value="lê via Catalog (from_catalog)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="notebsilver" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="silver">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="athena" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="export">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="export" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="s3export">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="s3export" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="download">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="graficos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="material">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="material" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;fontSize=10;" target="fim">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_title" parent="1" style="text;html=1;fontSize=14;fontStyle=1;align=left;" value="Legenda" vertex="1">
+          <mxGeometry height="20" width="200" x="1020" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="rounded=1;arcSize=50;whiteSpace=wrap;html=1;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Início / Fim" vertex="1">
+          <mxGeometry height="45" width="110" x="1020" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="shape=parallelogram;whiteSpace=wrap;html=1;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Entrada/Saída" vertex="1">
+          <mxGeometry height="45" width="110" x="1020" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Processo" vertex="1">
+          <mxGeometry height="45" width="110" x="1020" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Processo predefinido" vertex="1">
+          <mxGeometry height="45" width="130" x="1020" y="425" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Dados armazenados" vertex="1">
+          <mxGeometry height="55" width="120" x="1020" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" parent="1" style="shape=document;whiteSpace=wrap;html=1;fillColor=#B8C4CE;strokeColor=#1F2937;fontSize=11;" value="Documento" vertex="1">
+          <mxGeometry height="45" width="110" x="1020" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-1" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.flowchart.on-page_reference;fillColor=#eeeeee;strokeColor=#36393d;labelPosition=center;align=center;fontSize=12;" value="1" vertex="1">
+          <mxGeometry height="60" width="60" x="135" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-2" edge="1" parent="1" source="jobbronze" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=10;" target="DpS-EUZ55fWoTBLlmjlq-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-3" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=offPageConnector;rounded=0;size=0.5;labelPosition=center;align=center;fillColor=#eeeeee;strokeColor=#36393d;fontSize=12;" value="1" vertex="1">
+          <mxGeometry height="60" width="60" x="365" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-4" edge="1" parent="1" source="DpS-EUZ55fWoTBLlmjlq-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=10;" target="s3bronze">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-5" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.flowchart.on-page_reference;labelPosition=center;align=center;fillColor=#eeeeee;strokeColor=#36393d;fontSize=12;" value="2" vertex="1">
+          <mxGeometry height="60" width="60" x="365" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-6" edge="1" parent="1" source="silver" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=10;" target="DpS-EUZ55fWoTBLlmjlq-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-8" edge="1" parent="1" source="DpS-EUZ55fWoTBLlmjlq-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;" target="athena">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-7" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=offPageConnector;rounded=0;size=0.5;labelPosition=center;align=center;fillColor=#eeeeee;strokeColor=#36393d;fontSize=12;" value="2" vertex="1">
+          <mxGeometry height="60" width="60" x="605" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-9" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=mxgraph.flowchart.on-page_reference;labelPosition=center;align=center;fillColor=#eeeeee;strokeColor=#36393d;fontSize=12;" value="3" vertex="1">
+          <mxGeometry height="60" width="60" x="605" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-12" edge="1" parent="1" source="DpS-EUZ55fWoTBLlmjlq-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;" target="graficos" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DpS-EUZ55fWoTBLlmjlq-11" parent="1" style="verticalLabelPosition=middle;verticalAlign=middle;html=1;shape=offPageConnector;rounded=0;size=0.5;labelPosition=center;align=center;fillColor=#eeeeee;strokeColor=#36393d;fontSize=12;" value="3" vertex="1">
+          <mxGeometry height="60" width="60" x="840" y="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
