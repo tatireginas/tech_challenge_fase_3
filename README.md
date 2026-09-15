@@ -1,4 +1,12 @@
 # Tech Challenge Fase 3 — Big Data & Analytics
+GRUPO 7:
+Camila de Oliveira - RM 371409
+Lucas Zucoloto Soares Valbusa - RM 373425
+Luysa Brito de Paiva Lima - RM 373813
+Tatiana Regina da Silva  - RM 373518
+Vanessa Gomes Cardoso - RM 373426
+
+
 ## State of Data Brasil 2023 + 2024 + 2025/2026 — Pipeline AWS real (S3 → Glue → Bronze/Silver → Athena)
 
 Pipeline **realmente executado** no AWS Academy Lab. Esta é a **segunda revisão** da arquitetura:
