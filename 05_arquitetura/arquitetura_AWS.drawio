@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Fluxograma Padrao - Pipeline State of Data" id="flowstd1">
-    <mxGraphModel dx="1438" dy="821" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1366" dy="780" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -52,7 +52,7 @@
         <mxCell id="download" parent="1" style="shape=document;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Download dos&#xa;7 CSVs" vertex="1">
           <mxGeometry height="80" width="160" x="555" y="632.5" as="geometry" />
         </mxCell>
-        <mxCell id="graficos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2F9E44;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Gráficos / Análises&#xa;Python (Pandas/&#xa;Matplotlib) ou BI" vertex="1">
+        <mxCell id="graficos" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2F9E44;strokeColor=#1F2937;fontColor=#ffffff;fontSize=10;fontStyle=1;" value="Visualização de resultados por painel no Tableau" vertex="1">
           <mxGeometry height="70" width="160" x="790" y="212.5" as="geometry" />
         </mxCell>
         <mxCell id="material" parent="1" style="shape=document;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" value="Material Executivo (PDF)&lt;br&gt;&quot;Perfil de Mercado de&lt;br&gt;Profissionais de Dados&quot;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
